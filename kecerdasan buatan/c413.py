@@ -21,21 +21,35 @@ class Speed(VariableFuzzy):
     
     def slow(self, x):
         # 0-s1 = 1
-        if x < s1:
+        if x < self.s1:
             return 1
         # s1-s2 = turun
-        elif s1<=x<=s2:
+        elif self.s1<=x<=self.s2:
             return self.turun(x)
         else:
             return 0
 
-    def steady(self):
+    def steady(self, x):
         # s1-s2 = naik
+        if self.s1<=x<=self.s2:
+            return self.naik(x)
         # s2-s3 = 1
+        elif self.s2<=x<=self.s3:
+            return 1
         # s3-s4 = turun
-        pass
+        elif self.s2<=x<=self.s3:
+            return self.turun(x)
+        else:
+            return 0
     
-    def fast(self):
+    def fast(self, x):
         # s3-s4 = naik
         # s4-... = 1
-        pass
+        if x > self.s4:
+            return 1
+        elif self.s3<=x<=self.s4:
+            return self.naik(x)
+        else:
+            return 0
+
+        
