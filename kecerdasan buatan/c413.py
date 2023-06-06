@@ -1,3 +1,6 @@
+# pip install matplotlib
+from matplotlib import pyplot as plt
+
 class VariableFuzzy():
 
     def __init__(self):
@@ -7,7 +10,7 @@ class VariableFuzzy():
     def naik(self, x):
         return (x - self.min )/(self.max - self.min)
 
-    def turun(self):
+    def turun(self, x):
         return (self.max - x)/(self.max - self.min)
 
 class Speed(VariableFuzzy):
