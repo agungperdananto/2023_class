@@ -1,3 +1,7 @@
+# pip install matplotlib
+
+from matplotlib import pyplot as plt
+
 class BaseFuzzy():
 
     def __init__(self):
@@ -15,7 +19,8 @@ class Temp(BaseFuzzy):
         self.t1 = 5
         self.t2 = 15
         self.t3 = 25
-        self.t4 = 55
+        self.t4 = 35
+        self.tn = 50
 
     def freeze(self, x):
         # 0 - t1 = 1
@@ -66,3 +71,73 @@ class Temp(BaseFuzzy):
             return 1
         else:
             return 0
+
+    def graph(self, value=None):
+        plt.figure(figsize=(15, 10))
+        # freeze
+        # 0 - t1 = 1 [1, 1]
+        # t1 -t2 = down [1, 0]
+        # t2 - tn = 0 [0, 0]
+        x_freeze = [0, self.t1, self.t2, self.tn]
+        y_freeze = [1, 1, 0, 0]
+
+        plt.plot(x_freeze, y_freeze, label='freeze')
+        # cold
+        # 0 - t1 = 0 [0, 0]
+        # t1 -t2 = up [0, 1]
+        # t2 -t3 = down [1, 0]
+        # t3 - tn = 0 [0, 0]
+        x_cold = [0, self.t1, self.t2,  self.t3, self.tn]
+        y_cold = [0, 0, 1, 0, 0]
+        plt.plot(x_cold, y_cold, label='cold')
+
+        # warm
+        # 0-t2 = 0 [0, 0]
+        # t2 -t3 = up [0, 1]
+        # t3 -t4 = down [1, 0]
+        # t4-tn = 0 [0, 0]
+        x_warm = [0, self.t2, self.t3, self.t4, self.tn]
+        y_warm = [0, 0, 1, 0, 0]
+        plt.plot(x_warm, y_warm, label='warm')
+        # hot
+        # 0 - t3 = 0 [0, 0]
+        # t3 -t4 = up [0, 1]
+        # t4 - tn = 1 [1, 1]
+
+        x_hot = [0, self.t3, self.t4, self.tn]
+        y_hot = [0, 0, 1, 1]
+        plt.plot(x_hot, y_hot, label='hot')
+
+        if value:
+            x_param = [0, value, value]
+            # freeze
+            freeze_value = self.freeze(value)
+            y_freeze_v = [freeze_value, freeze_value, 0]
+            plt.plot(x_param, y_freeze_v, label=f'v_freeze[{freeze_value}]')
+            # cold
+            cold_value = self.cold(value)
+            y_cold_v = [cold_value, cold_value, 0]
+            plt.plot(x_param, y_cold_v, label=f'v_cold[{cold_value}]')
+            # warm
+            warm_value = self.warm(value)
+            y_warm_v = [warm_value, warm_value, 0]
+            plt.plot(x_param, y_warm_v, label=f'v_warm[{warm_value}]')
+            # hot
+            hot_value = self.hot(value)
+            y_hot_v = [hot_value, hot_value, 0]
+            plt.plot(x_param, y_hot_v, label=f'v_hot[{hot_value}]')
+
+
+        plt.legend(loc='upper right')
+        plt.show()
+
+
+temp = Temp()
+
+x = 22
+print('freeze', temp.freeze(x))
+print('cold', temp.cold(x))
+print('warm', temp.warm(x))
+print('hot', temp.hot(x))
+
+temp.graph(x)
