@@ -106,6 +106,37 @@ class Speed(BaseFuzzy):
         plt.legend(loc='upper right')
         plt.show()
 
+class Pressure(BaseFuzzy):
+
+    def __init__(self):
+        self.p1 = 5
+        self.p2 = 10
+        self.p3 = 15
+        self.p4 = 20
+        self.p5 = 23
+        self.p6 = 27
+        self.p7 = 32
+        self.p8 = 37
+        self.p9 = 40
+
+    def graph(self):
+        # very low
+        # 0-p1 = 1
+        # p1-p3 = down
+        # low
+        # p2-p3 = up
+        # p3-p4 = down
+        # medium
+        # p3-p5 = up
+        # p5-p6 = 1
+        # p6 - p7= down
+        # high
+        # p6 - p7= up
+        # p7-p9 = down
+        # very high
+        # p8-p9 = up
+        # p9-...=1
+        pass
 
 speed = Speed()
 x = 72

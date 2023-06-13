@@ -106,6 +106,40 @@ class Speed(VariableFuzzy):
         plt.legend(loc = 'upper left')
         plt.show()
 
+
+class Preassure(VariableFuzzy):
+
+    def __init__(self):
+        self.p1 = 5
+        self.p2 = 10
+        self.p3 = 15
+        self.p4 = 20
+        self.p5 = 23
+        self.p6 = 28
+        self.p7 = 35
+        self.p8 = 40
+        self.p9 = 70
+        
+    def graph(self):
+        # very low
+        # 0-p1 = 1
+        # p1-p2 = down
+        # low
+        # p1-p2=up
+        # p2-p4=down
+        # medium
+        # p3-p5 = up
+        # p5-p6 =1
+        # p6-p7 = down
+        # high
+        # p6-p8 = up
+        # p8-p9 = down
+        # very high
+        # p8-p9 = up
+        # p9-...=1
+        pass
+
+
 speed = Speed()
 x = 85
 print('slow', speed.slow(x))
