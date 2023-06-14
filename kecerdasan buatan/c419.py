@@ -131,6 +131,63 @@ class Temp(BaseFuzzy):
         plt.legend(loc='upper right')
         plt.show()
 
+
+class Pressure(BaseFuzzy):
+
+    def __init__(self):
+        self.p1 = 5
+        self.p2 = 8
+        self.p3 = 15
+        self.p4 = 20
+        self.p5 = 28
+        self.p6 = 30
+        self.p7 = 37
+        self.p8 = 40
+        self.p9 = 47
+
+    def very_low(self, x):
+        # 0-p1 = 1
+        # p1-p3 = down
+        pass
+
+    def low(self, x):
+        # p2-p3 = up
+        # p3-p4 = down
+        pass
+    def medium(self, x):
+        # p3 - p4=up
+        # p4-p5 = 1
+        # p6-p7 = down
+        pass
+    def high(self, x):
+        # p5-p8 = up
+        # p8 - p9 = down
+        pass
+    def very_high(self, x):
+        # p8 - p9 = up
+        # p9-...= 1
+        pass
+        
+    def graph(self, x):
+        # very low
+        # 0-p1 = 1
+        # p1-p3 = down
+        # low
+        # p2-p3 = up
+        # p3-p4 = down
+        # medium
+        # p3 - p4=up
+        # p4-p5 = 1
+        # p6-p7 = down
+        # high
+        # p5-p8 = up
+        # p8 - p9 = down
+        # very high
+        # p8 - p9 = up
+        # p9-...= 1
+        pass
+
+
 temp = Temp()
 x = 43
 print('freeze', temp.freeze(x))
