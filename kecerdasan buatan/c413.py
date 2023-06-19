@@ -27,7 +27,6 @@ class Speed(VariableFuzzy):
         if x < self.s1:
             return 1
         # s1-s2 = turun
-        
         elif self.s1<=x<=self.s2:
             self.min = self.s1
             self.max = self.s2
@@ -119,31 +118,167 @@ class Preassure(VariableFuzzy):
         self.p7 = 35
         self.p8 = 40
         self.p9 = 70
-        
-    def graph(self):
-        # very low
+        self.pn = 80
+
+        self.color = {
+            'very_low': 'C0',
+            'low': 'C1',
+            'medium': 'C2',
+            'high': 'C3',
+            'very_high': 'C4',
+        }
+        self.default = 'C5'
+    
+    def very_low(self, x):
         # 0-p1 = 1
         # p1-p2 = down
-        # low
+        if x < self.p1:
+            return 1
+        elif self.p1<=x<=self.p2:
+            self.min = self.p1
+            self.max = self.p2
+            return self.turun(x)
+        else:
+            return 0
+
+    def low(self, x):
         # p1-p2=up
         # p2-p4=down
-        # medium
+        if self.p1<=x<=self.p2:
+            self.min = self.p1
+            self.max = self.p2
+            return self.naik(x)
+        elif self.p2<=x<=self.p4:
+            self.min = self.p2
+            self.max = self.p4
+            return self.turun(x)
+        else:
+            return 0
+
+    def medium(self, x):
         # p3-p5 = up
         # p5-p6 =1
         # p6-p7 = down
-        # high
+        if self.p3<=x<=self.p5:
+            self.min = self.p3
+            self.max = self.p5
+            return self.naik(x)
+        elif self.p5<=x<=self.p6:
+            return 1
+        elif self.p6<=x<=self.p7:
+            self.min = self.p6
+            self.max = self.p7
+            return self.turun(x)
+        else:
+            return 0
+
+    def high(self, x):
         # p6-p8 = up
         # p8-p9 = down
-        # very high
+        if self.p6<=x<=self.p8:
+            self.min = self.p6
+            self.max = self.p8
+            return self.naik(x)
+        elif self.p8<=x<=self.p9:
+            self.min = self.p8
+            self.max = self.p9
+            return self.turun(x)
+        else:
+            return 0
+
+
+    def very_high(self, x):
         # p8-p9 = up
         # p9-...=1
-        pass
+        if x > self.p9:
+            return 1
+        elif self.p8<=x<=self.p9:
+            self.min = self.p8
+            self.max = self.p9
+            return self.naik(x)
+        else:
+            return 0
+
+    def graph(self, value=None):
+        plt.figure(figsize=(15, 5))
+        # very low
+        # 0-p1 = 1
+        # p1-p2 = down
+        # p2-pn = 0
+        x_v_low = [0, self.p1, self.p2, self.pn]
+        y_v_low = [1, 1, 0, 0]
+        plt.plot(x_v_low, y_v_low, label='very low', color=self.color.get('very_low', self.default))
+        # low
+        # 0-p1 = 0
+        # p1-p2 = up
+        # p2-p4 = down
+        # p4-pn = 0
+        x_low = [0, self.p1, self.p2, self.p4, self.pn]
+        y_low = [0, 0, 1, 0, 0]
+        plt.plot(x_low, y_low, label='low', color=self.color.get('low', self.default))
+        # medium
+        # 0-p3 = 0
+        # p3-p5 = up
+        # p5-p6 =1
+        # p6-p7 = down
+        # p7-pn = 0
+        x_medium = [0, self.p3, self.p5, self.p6, self.p7, self.pn]
+        y_medium = [0, 0, 1, 1, 0, 0]
+        plt.plot(x_medium, y_medium, label='medium', color=self.color.get('medium', self.default))
+        # high
+        # 0-p6 = 0
+        # p6-p8 = up
+        # p8-p9 = down
+        # p9-pn = 0
+        x_low = [0, self.p6, self.p8, self.p9, self.pn]
+        y_low = [0, 0, 1, 0, 0]
+        plt.plot(x_low, y_low, label='high', color=self.color.get('high', self.default))
+        # very high
+        # 0-p8 = 0
+        # p8-p9 = up
+        # p9-pn = 1
+        x_fast = [0, self.p8, self.p9, self.pn]
+        y_fast = [0, 0, 1, 1]
+        plt.plot(x_fast, y_fast, label='very high', color=self.color.get('very_high', self.default))
+        if value:
+            x_param = [0, value, value]
+            y_v_low = self.very_low(value)
+            y_low = self.low(value)
+            y_medium = self.medium(value)
+            y_high = self.high(value)
+            y_v_high = self.very_high(value)
+
+            y_param_v_low = [y_v_low, y_v_low, 0]
+            y_param_low = [y_low, y_low, 0]
+            y_param_medium = [y_medium, y_medium, 0]
+            y_param_high = [y_high, y_high, 0]
+            y_param_v_high = [y_v_high, y_v_high, 0]
 
 
-speed = Speed()
-x = 85
-print('slow', speed.slow(x))
-print('steady', speed.steady(x))
-print('fast', speed.fast(x))
-speed.graph(x)
+            plt.plot(x_param, y_param_v_low, label='very low value', color=self.color.get('very_low', self.default))
+            plt.plot(x_param, y_param_low, label='low value', color=self.color.get('low', self.default))
+            plt.plot(x_param, y_param_medium, label='medium value', color=self.color.get('medium', self.default))
+            plt.plot(x_param, y_param_high, label='high value', color=self.color.get('high', self.default))
+            plt.plot(x_param, y_param_v_high, label='very high value', color=self.color.get('very_high', self.default))
         
+        plt.legend(loc = 'upper right')
+        plt.show()
+
+
+
+# speed = Speed()
+# x = 85
+# print('slow', speed.slow(x))
+# print('steady', speed.steady(x))
+# print('fast', speed.fast(x))
+# speed.graph(x)
+
+preassure = Preassure()
+x = 16
+print('very low', preassure.very_low(x))
+print('low', preassure.low(x))
+print('medium', preassure.medium(x))
+print('high', preassure.high(x))
+print('very high', preassure.very_high(x))
+
+preassure.graph(x)
