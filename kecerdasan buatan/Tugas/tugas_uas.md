@@ -93,7 +93,7 @@ lalu Rule yang digunakan sebagai berikut:
 
 ## Contoh 
 
-Contoh implementasi dapat dilihat disini dengan menggunakan variabel **persediaan** dan **permintaan** sebagai input dan outputnya adalah variabel **produksi**
+Contoh implementasi dapat dilihat  [disini](https://github.com/agungperdananto/2023_class/blob/dev/kecerdasan%20buatan/fis.py) dengan menggunakan variabel **persediaan** dan **permintaan** sebagai input dan outputnya adalah variabel **produksi**
 
 ## Pengumpulan jawaban
 
