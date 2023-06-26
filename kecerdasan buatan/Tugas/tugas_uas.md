@@ -7,7 +7,9 @@ Buatlah Program berorientasi object untuk menghitung output menggunakan Fuzzy In
 
 Gunakan variabel Speed dan Preassure sebagai variabel input,
 dan variabel temperature sebagai output, berikut adalah variabel temperature
+
 ![enter image description here](https://github.com/agungperdananto/2023_class/blob/dev/kecerdasan%20buatan/Tugas/images/temp_1.png?raw=true)
+
 lalu Rule yang digunakan sebagai berikut:
 
     [1]Jika speed SLOW dan pressure VERY LOW maka temperature HOT
@@ -44,7 +46,9 @@ lalu Rule yang digunakan sebagai berikut:
 
 Gunakan variabel Temperature dan Preassure sebagai variabel input,
 dan variabel Speed sebagai output, berikut adalah variabel Speed:
+
 ![enter image description here](https://github.com/agungperdananto/2023_class/blob/dev/kecerdasan%20buatan/Tugas/images/speed_1.png?raw=true)
+
 lalu Rule yang digunakan sebagai berikut:
 
     [1] Jika Temperature FREEZE dan preassure VERY LOW maka speed FAST
