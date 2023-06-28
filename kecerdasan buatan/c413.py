@@ -1,4 +1,5 @@
 # pip install matplotlib
+import numpy as np
 from matplotlib import pyplot as plt
 
 class VariableFuzzy():
@@ -15,12 +16,12 @@ class VariableFuzzy():
 
 class Speed(VariableFuzzy):
 
-    def __init__(self):
+    def __init__(self): 
         self.s1 = 40
         self.s2 = 60
         self.s3 = 80
         self.s4 = 100
-        self.sn = 200
+        self.sn = 120
     
     def slow(self, x):
         # 0-s1 = 1
@@ -88,6 +89,9 @@ class Speed(VariableFuzzy):
         x_fast = [0, self.s3, self.s4, self.sn]
         y_fast = [0, 0, 1, 1]
         plt.plot(x_fast, y_fast, label='fast')
+        plt.title('Speed [Output]')
+        x_line = np.linspace(0, 100, 101)
+        plt.xticks([0, self.s1, self.s2, self.s3, self.s4])
 
         if value:
             x_param = [0, value, value]
@@ -255,11 +259,11 @@ class Preassure(VariableFuzzy):
             y_param_v_high = [y_v_high, y_v_high, 0]
 
 
-            plt.plot(x_param, y_param_v_low, label='very low value', color=self.color.get('very_low', self.default))
-            plt.plot(x_param, y_param_low, label='low value', color=self.color.get('low', self.default))
-            plt.plot(x_param, y_param_medium, label='medium value', color=self.color.get('medium', self.default))
-            plt.plot(x_param, y_param_high, label='high value', color=self.color.get('high', self.default))
-            plt.plot(x_param, y_param_v_high, label='very high value', color=self.color.get('very_high', self.default))
+            plt.plot(x_param, y_param_v_low, color=self.color.get('very_low', self.default))
+            plt.plot(x_param, y_param_low, color=self.color.get('low', self.default))
+            plt.plot(x_param, y_param_medium, color=self.color.get('medium', self.default))
+            plt.plot(x_param, y_param_high, color=self.color.get('high', self.default))
+            plt.plot(x_param, y_param_v_high, color=self.color.get('very_high', self.default))
         
         plt.legend(loc = 'upper right')
         plt.show()
@@ -281,4 +285,7 @@ print('medium', preassure.medium(x))
 print('high', preassure.high(x))
 print('very high', preassure.very_high(x))
 
-preassure.graph(x)
+# preassure.graph(x)
+
+speed = Speed()
+speed.graph()

@@ -73,7 +73,7 @@ class Temp(BaseFuzzy):
             return 0
 
     def graph(self, value=None):
-        plt.figure(figsize=(15, 10))
+        # plt.figure(figsize=(15, 10))
         # freeze
         # 0 - t1 = 1 [1, 1]
         # t1 -t2 = down [1, 0]
@@ -107,6 +107,8 @@ class Temp(BaseFuzzy):
         x_hot = [0, self.t3, self.t4, self.tn]
         y_hot = [0, 0, 1, 1]
         plt.plot(x_hot, y_hot, label='hot')
+        plt.title('Temperature [Output]')
+        plt.xticks([self.t1, self.t2, self.t3, self.t4])
 
         if value:
             x_param = [0, value, value]
@@ -198,4 +200,4 @@ print('cold', temp.cold(x))
 print('warm', temp.warm(x))
 print('hot', temp.hot(x))
 
-temp.graph(x)
+temp.graph()

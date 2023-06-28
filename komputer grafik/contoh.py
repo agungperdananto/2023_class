@@ -1,5 +1,6 @@
 import cv2 
 
+# https://github.com/agungperdananto/2023_class
 
 folder_name = input('folder_name: ')
 size_in = input('ukuran_kotak: ')
@@ -15,7 +16,7 @@ img = cv2.imread('../images/image-1.jpg')
 # center_right
 # bottom_left
 # bottom_center
-# bottom_left
+# bottom_right
 
 def crop_by_position(img, position, size):
     pass

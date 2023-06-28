@@ -51,11 +51,11 @@ class Permintaan(BaseFuzzy):
             x_param = [0, value, value]
             turun_value = self.turun(value)
             y_param_turun = [turun_value, turun_value, 0]
-            ax.plot(x_param, y_param_turun, color='C0')
+            ax.plot(x_param, y_param_turun,'o--', color='C0')
             # naik
             naik_value = self.naik(value)
             y_param_naik = [naik_value, naik_value, 0]
-            ax.plot(x_param, y_param_naik, color='C1')
+            ax.plot(x_param, y_param_naik,'o--', color='C1')
 
 class Persediaan(BaseFuzzy):
 
@@ -99,11 +99,11 @@ class Persediaan(BaseFuzzy):
             x_param = [0, value, value]
             sedikit_value = self.sedikit(value)
             y_param_kurang = [sedikit_value, sedikit_value, 0]
-            ax.plot(x_param, y_param_kurang, color='C0')
+            ax.plot(x_param, y_param_kurang, 'o--', color='C0')
             # banyak
             banyak_value = self.banyak(value)
             y_param_banyak = [banyak_value, banyak_value, 0]
-            ax.plot(x_param, y_param_banyak, color='C1')
+            ax.plot(x_param, y_param_banyak,'o--', color='C1')
 
 
 # output
@@ -216,11 +216,11 @@ class Produksi(BaseFuzzy):
             x_param = [0, value, value]
             kurang_value = self.fuzzy_berkurang
             y_param_kurang = [kurang_value, kurang_value, 0]
-            ax3.plot(x_param, y_param_kurang, color='C0')
+            ax3.plot(x_param, y_param_kurang,'o--', color='C0')
             # tambah
             tambah_value = self.fuzzy_bertambah
             y_param_tambah = [tambah_value, tambah_value, 0]
-            ax3.plot(x_param, y_param_tambah, color='C1')
+            ax3.plot(x_param, y_param_tambah,'o--', color='C1')
 
         plt.show()
 
